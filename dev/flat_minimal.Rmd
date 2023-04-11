@@ -10,7 +10,7 @@ library(testthat)
 ```
 
 <!--
- You need to run the 'description' chunk in the '0-dev_history.Rmd' file before continuing your code there.
+You need to run the 'description' chunk in the '0-dev_history.Rmd' file before continuing your code there.
 -->
 
 ```{r development-load}
@@ -19,7 +19,8 @@ pkgload::load_all(export_all = FALSE)
 ```
 
 # get_info_data
-    
+
+
 ```{r function-get_info_data}
 #' Title A function that returns the dimensions and name of a data frame
 #' 
@@ -43,15 +44,22 @@ get_info_data <- function(data_frame){
   
   list(dimension = dim_df,
        names = nms_df)
-    
+  
 }
 ```
-  
+
+
+
+
 ```{r example-get_info_data}
 get_info_data(iris)
 ```
-  
+
+
+
 ```{r tests-get_info_data}
+
+
 vex_x = c(1, 2, 3)
 test_that("get_info_data works", {
   expect_true(inherits(get_info_data, "function"))
@@ -59,7 +67,65 @@ test_that("get_info_data works", {
   expect_error(get_info_data(vex_x), "vex_x is not a data frame")
 })
 ```
+
+
+# get_mean_data
+
+```{r function-get_mean_data}
+#' Title Functions gives the mean of numerics columns of a df
+#' 
+#' Description
+#' @param data_frame A data.frame 
+#' @return a data frame / message indicating whether there was numeric cols found
+#' @importFrom dplyr summarise_if
+#' @export
+get_mean_data <- function(data_frame){
   
+  obj_nm = deparse(substitute(data_frame))
+  
+  if(isFALSE(is.data.frame(data_frame))){
+    msg = sprintf("%s is not a data frame", obj_nm)
+    stop(msg)
+  }
+  
+  df_output = summarise_if(data_frame, is.numeric, mean, na.rm = T)
+  n_col = ncol(df_output)
+  
+  if(isTRUE(n_col == 0)){
+    
+    msg = sprintf("%s doesn't have any numeric cols", obj_nm)
+    message(msg)
+    
+  }
+  
+  
+  df_output
+  
+}
+```
+
+
+```{r example-get_mean_data}
+get_mean_data(iris)
+
+char_df = data.frame(A = c("A", "B"),
+                     B = c("D", "B"))
+
+
+get_mean_data(char_df)
+```
+
+
+```{r tests-get_mean_data}
+char_df = data.frame(A = c("A", "B"),
+                     B = c("D", "B"))
+
+test_that("get_mean_data works", {
+  expect_true(inherits(get_mean_data, "function"))
+  expect_message(get_mean_data(char_df), "char_df doesn't have any numeric cols") 
+})
+```
+
 
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
