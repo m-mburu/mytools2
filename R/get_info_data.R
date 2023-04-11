@@ -24,5 +24,5 @@ get_info_data <- function(data_frame){
   
   list(dimension = dim_df,
        names = nms_df)
-    
+  
 }
