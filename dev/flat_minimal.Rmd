@@ -18,33 +18,52 @@ library(testthat)
 pkgload::load_all(export_all = FALSE)
 ```
 
-# My function
-
-```{r function-my_fun}
-#' my_fun Title
-#'
-#' @return 1
+# get_info_data
+    
+```{r function-get_info_data}
+#' Title A function that returns the dimensions and name of a data frame
+#' 
+#' Description Given a data frame it returms a list of the names of the df and dimensions
+#' 
+#' @param data_frame Function takes a data frame 
+#' @return A list  of 2 dimensions and names of data frame
+#' 
 #' @export
-#'
-#' @examples
-my_fun <- function() {
-  1
+#' 
+get_info_data <- function(data_frame){
+  
+  if(isFALSE(is.data.frame(data_frame))){
+    obj_nm = deparse(substitute(data_frame))
+    msg = sprintf("%s is not a data frame", obj_nm)
+    stop(msg)
+  }
+  
+  nms_df = names(data_frame)
+  dim_df = dim(data_frame)
+  
+  list(dimension = dim_df,
+       names = nms_df)
+    
 }
 ```
-
-```{r examples-my_fun}
-my_fun()
+  
+```{r example-get_info_data}
+get_info_data(iris)
 ```
-
-```{r tests-my_fun}
-test_that("my_fun works", {
-
+  
+```{r tests-get_info_data}
+vex_x = c(1, 2, 3)
+test_that("get_info_data works", {
+  expect_true(inherits(get_info_data, "function"))
+  expect_error(get_info_data("mydata"), '"mydata" is not a data frame')
+  expect_error(get_info_data(vex_x), "vex_x is not a data frame")
 })
 ```
-
+  
 
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-fusen::inflate(flat_file = "dev/flat_minimal.Rmd", vignette_name = "Minimal")
+fusen::inflate(flat_file = "dev/flat_minimal.Rmd", 
+               vignette_name = "mytools")
 ```

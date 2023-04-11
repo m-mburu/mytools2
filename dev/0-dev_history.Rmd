@@ -13,14 +13,13 @@ All commands that you use to use when developing packages...
 
 ```{r description, eval=FALSE}
 # Describe your package
-fusen::fill_description(
+fusen::fill_description(overwrite = T,
   pkg = here::here(),
   fields = list(
     Title = "Build mytools Rpackage",
-    Description = "A package that contains functions for statistical analysis",
+    Description = "A package that contains functions for statistical analysis.",
     `Authors@R` = c(
-      person("Moses", "Mburu", email = "moses.mburu@finddx.org", role = c("aut", "cre")),
-      person(given = "Find", role = "DS")
+      person("Moses", "Mburu", email = "moses.mburu@finddx.org", role = c("aut", "cre"))
     )
   )
 )
