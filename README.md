@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of mytools2 is to …
+The goal of mytools2 is to practice package creation
 
 ## Installation
 
@@ -36,9 +36,15 @@ get_info_data(iris)
 ## get mean example
 
 ``` r
-library(mytools2)
-
 get_mean_data(iris)
 #>   Sepal.Length Sepal.Width Petal.Length Petal.Width
 #> 1     5.843333    3.057333        3.758    1.199333
+```
+
+## get mean example
+
+``` r
+get_mean_data(faithful)
+#>   eruptions  waiting
+#> 1  3.487783 70.89706
 ```

@@ -5,3 +5,6 @@
 ^\.Rproj\.user$
 ^mytools2\.Rproj$
 ^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

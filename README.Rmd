@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of mytools2 is to ...
+The goal of mytools2 is to  practice package creation 
 
 ## Installation
 
@@ -43,8 +43,16 @@ get_info_data(iris)
 ## get mean example 
 
 ```{r get-mean-example}
-library(mytools2)
 
 get_mean_data(iris)
+
+```
+
+
+## get mean example 
+
+```{r get-mean-example2}
+
+get_mean_data(faithful)
 
 ```
